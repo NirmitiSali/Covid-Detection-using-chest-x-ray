@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>
+home pg
+</title>
+<style>
+*{
+font-family:Calibri; font-size:20px;
+}
+#nav{
+background-color:#545454;
+text-align:right;
+}
+#nav a:hover{
+color:white;}
+
+#nav a{
+color:#D9D9D9;
+font-size:40px;
+text-decoration:none;
+padding:30px;
+}
+body {
+  background-color: #D9D9D9;
+}
+</style>
+</head>
+<body>
+<div id="nav">
+  {% if user.is_authenticated %}
+  <a>Welcome {{user.username}}</a>
+  <a href="{% url 'ulogout' %}">Logout</a>
+  {% else %}
+  <a href="{% url 'home' %}">Home</a>
+  <a href="{% url 'usignup' %}">SignUp</a>
+  <a href="{% url 'ulogin' %}">Login</a>
+  {% endif %}
+</div>
+<br>
+<center>
+<h1 style="font-size:40px;"> Welcome !!!</h1>
+</center>
+</body>
+</html>

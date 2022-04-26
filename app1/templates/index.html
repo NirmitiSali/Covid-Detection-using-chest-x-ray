@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+    <meta charset="utf-8">
+		<title>COVID-19 TESTING</title>
+    <style>
+
+
+#nav{
+background-color: #e8eeef;
+text-align:right;
+position: fixed;
+top: 0;
+box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+padding: 15px 0 15px 0 ;
+margin: 0px;
+}
+#nav a:hover{
+color: #174a24;
+}
+#b input:hover{
+ background-color: green;
+ color:white;
+}
+#nav a{
+color:#5cb874;
+font-size:40px;
+text-decoration:none;
+padding:30px;
+font-family: "Raleway", sans-serif;
+margin-top: 0px;
+}
+
+ 
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+body::before{
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-image:url("https://images.hindustantimes.com/img/2021/07/26/1600x900/c4d96c8a-ee52-11eb-9ca5-f864671571e5_1627332580668.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.9;
+    /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+}
+
+
+
+form {
+  /* max-width: 450px; */
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
+  width: 100%;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 4px 8px 0;
+}
+
+select {
+  padding: 6px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+.btn {
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
+
+}
+.btn:active {
+            transform: scale(0.98);
+            /* Scaling button to 0.98 to its original size */
+            box-shadow: 6px 4px 44px 2px rgba(0, 0, 0, 0.24);
+            /* Lowering the shadow */
+        }
+fieldset {
+  margin-bottom: 30px;
+  border: none;
+
+}
+
+legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+.number {
+  background-color: #5fcf80;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 480px) {
+
+  form {
+    max-width: 650px;
+  }
+
+}
+
+body {
+  font-family: "Raleway", sans-serif;, sans-serif;
+  color: #444444;
+  margin: 0px;
+}
+
+
+a {
+  text-decoration: none;
+  color: #5cb874;
+  font-family: "Raleway", sans-serif;
+}
+
+a:hover {
+  color: #80c792;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+
+
+
+
+    </style>
+	</head>
+
+	<body>
+    <div id="nav" style="background-color: #e8eeef; position: sticky;">
+      
+      <h1 style="float: left; font-color: #5cb874; margin-top: -5px"><a href="index.html"><b>COVICARE</b></a></h1>
+    
+  {% if user.is_authenticated %}
+  <a style="font-size: 30px;" href="{% url 'home' %} ">WELCOME <span style="text-transform: uppercase">{{user.username}}</span></a>
+  <a style="font-size: 30px" href="{% url 'ulogout' %}">LOG OUT</a>
+  {% else %}
+  <a style="font-size: 30px" href="{% url 'home' %}">HOME</a>
+  <a style="font-size: 30px" href="{% url 'usignup' %}">SIGN UP</a>
+  <a style="font-size: 30px" href="{% url 'ulogin' %}">SIGN IN</a>
+  {% endif %}
+  <br>
+
+</div>
+
+       <div class="navdiv">
+        <center>
+  </center>
+  
+  </div>
+  <!------------------------------------------------------------------->
+
+
+    <div class="register">
+      <br><br>
+      <br><br>
+
+    <form name="symptoms"
+     action="{% url 'index' %}" 
+     method="POST" 
+     enctype="multipart/form-data" 
+     id="survey-form"
+     >
+        {% csrf_token %}
+
+
+<div class="container">
+        <header class="header">
+          <center>
+          <h1 id="title" class="text-center">
+SPECIFY YOUR SYMPTOMS</h1>
+        </center>
+        </header>
+        
+<div class="form-group">
+
+      <label id="name-label" for="name">Patient's Name:</label>
+      <input type="text"
+       name="patient_name"
+        id="patient_name"
+         placeholder="Enter your age"
+         class="form-control">
+       </div>
+      
+<div class="form-group">
+      <label>Age:</label>
+      <input type="number"
+      name="age" 
+      id="age" 
+      placeholder="Enter your age"
+      class="form-control">
+      
+</div>
+<div class="form-group">
+      
+      <label>Temperature:</label>
+      <input type="number" 
+      name="temp" 
+      id="temp"
+      placeholder="Enter your temperature"
+      class="form-control">
+      
+      </div>
+
+      <div class="form-group">
+      <label>cough:</label>
+      <label>
+              <input
+                name="cough"
+                value=1
+                type="radio"
+                class="input-radio"
+                id="cough"
+                checked
+              />Yes</label
+            >
+            <label>
+              <input
+                name="cough"
+                value=0
+                type="radio"
+                class="input-radio"
+                id="cough"
+                checked
+              />No</label>
+</div>
+
+
+    <div class="form-group">
+      <p>
+              Sore Throat:
+            </p>
+            <label>
+              <input
+                name="sore_throat"
+                value=1
+                id="sore_throat"
+                type="radio"
+                class="input-radio"
+                checked
+              />Yes</label
+            >
+            <label>
+              <input
+                name="sore_throat"
+                value=0
+                type="radio"
+                id="sore_throat"
+                class="input-radio"
+                checked
+              />No</label
+            >
+          </div>
+
+    
+
+
+          <div class="form-group">
+            <p>
+              Difficulty in breathing: 
+            </p>
+            <label>
+              <input
+                name="breathing"
+                id="breathing"
+                value=1
+                type="radio"
+                class="input-radio"
+                checked
+              />Yes</label
+            >
+            <label>
+              <input
+                name="breathing"
+                id="breathing"
+                value=0
+                type="radio"
+                class="input-radio"
+                checked
+              />No</label
+            >
+          </div>
+
+   
+
+      <div class="form-group">
+            <p>
+              Head-ache:
+            </p>
+            <label>
+              <input
+                name="headache"
+                value=1
+                type="radio"
+                id="headache"
+                class="input-radio"
+                checked
+              />Yes</label
+            >
+            <label>
+              <input
+                name="headache"
+                value=0
+                type="radio"
+                id="headache"
+                class="input-radio"
+                checked
+              />No</label
+            >
+          </div>
+          
+
+
+    
+
+
+  
+
+  <!------------------------------------------------------------------->
+  
+<div class="form-group">
+        <label> Enter Your File:  <input id="image-selector" type="file" name="image" ></label>
+        <br><br><br>
+      </div>  
+
+<!--make this a submit button-->
+<button  id="predict-button" class="btn" role="button" type="submit">Predict</button>
+<br><br><br>
+
+  </form>
+
+		<img id="selected-image" width="400" src=""/>
+  
+       </div>
+       <br><br><br>
+	</body>
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+    let base64Image;
+    $("#image-selector").change(function() {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let dataURL = reader.result;
+            $('#selected-image').attr("src", dataURL);
+            base64Image = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+            console.log(base64Image);
+        }
+        reader.readAsDataURL($("#image-selector")[0].files[0]);
+        $("#result").text("..");
+        $("#probability").text("..");
+        $("#symptoms").text("..");
+
+    });
+
+    $("#predict-button").click(function(){
+            let message = {
+            image: base64Image,
+            
+        }
+        console.log(message);
+        $.post("http://http://127.0.0.1:8000/ulogin/index", JSON.stringify(message), function(response){
+            $("#result").text(response.prediction.result);
+            $("#probability").text(response.prediction.accuracy.toFixed(2));
+            $("#symptoms").text(response.prediction.symptoms);
+            console.log(response);
+        });
+    });
+</script>
+
+</html>
